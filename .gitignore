@@ -8,3 +8,6 @@ venv/
 
 # Ignore IDE and editor specific files
 .vscode/
+
+# Ignore data files (only temporary while developing)
+data/
