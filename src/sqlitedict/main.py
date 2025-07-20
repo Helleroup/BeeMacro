@@ -1,7 +1,7 @@
 import sqlite3
 
 # The local function to get the path of the database
-def getPath(db):
+def get_path(db):
 
     dbs = {
         'user': './data/user.db', # User database
@@ -23,7 +23,7 @@ def getPath(db):
 def get(db, table):
 
     # Establish a connection to the database and enable row factory to make rows behave like dictionaries
-    conn = sqlite3.connect(getPath(db))
+    conn = sqlite3.connect(get_path(db))
     conn.row_factory = sqlite3.Row
 
     # Create a cursor object to execute SQL commands and fetch all rows from the specified table including the rowid
@@ -35,19 +35,19 @@ def get(db, table):
     conn.close()
 
      # Create a dictionary where each key is the index and the value is a dictionary of the row data including the rowid.
-    tableDict = {
+    table_dict = {
         i + 1: {**{key: row[key] for key in row.keys()}, 'rowid': row['rowid']}
         for i, row in enumerate(rows)
     }
 
     # Return the dictionary
-    return tableDict
+    return table_dict
 
 # Function to add a new row to the selected database
-def addRow(db, table, data):
+def add_row(db, table, data):
 
     # Establish a connection to the database and create a cursor object
-    conn = sqlite3.connect(getPath(db))
+    conn = sqlite3.connect(get_path(db))
     cursor = conn.cursor()
 
     # Format the data to be compatible with sqlite
@@ -62,10 +62,10 @@ def addRow(db, table, data):
     conn.close()
 
 # Function to edit a specific cell from the selected database
-def editCell(db, table, rowid, column, data):
+def edit_cell(db, table, rowid, column, data):
 
     # Establish a connection to the database and create a cursor object
-    conn = sqlite3.connect(getPath(db))
+    conn = sqlite3.connect(get_path(db))
     cursor = conn.cursor()
 
     # Edit the cell in the table, where the rowid and column match
@@ -76,10 +76,10 @@ def editCell(db, table, rowid, column, data):
     conn.close()
 
 # Function to remove a specific row from the selected database
-def removeRow(db, table, rowid):
+def remove_row(db, table, rowid):
 
     # Establish a connection to the database and create a cursor object
-    conn = sqlite3.connect(getPath(db))
+    conn = sqlite3.connect(get_path(db))
     cursor = conn.cursor()
 
     # Delete the row in the table, where the rowid matches
