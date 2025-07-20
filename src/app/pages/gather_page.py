@@ -72,11 +72,11 @@ class GatherPage(ctk.CTkScrollableFrame):
 
     def editTask(self, rowid, field=None, pattern=None, shiftLock=None):
         if field:
-            sqld.editRow('user', 'tasks', rowid, 'field', field)
+            sqld.editCell('user', 'tasks', rowid, 'field', field)
         if pattern:
-            sqld.editRow('user', 'tasks', rowid, 'pattern', pattern)
+            sqld.editCell('user', 'tasks', rowid, 'pattern', pattern)
         if shiftLock is not None:
-            sqld.editRow('user', 'tasks', rowid, 'shift_lock', shiftLock)
+            sqld.editCell('user', 'tasks', rowid, 'shift_lock', shiftLock)
         #self.reloadTasks()
 
     def removeTask(self, rowid):
