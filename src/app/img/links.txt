@@ -6,3 +6,6 @@ planters_icon = https://icons8.com/icon/68636/pottery
 user_icon = https://icons8.com/icon/98957/user
 settings_icon = https://icons8.com/icon/59996/settings
 logs_icon = https://icons8.com/icon/69588/activity-history
+
+
+app_icon = https://icons8.com/icon/98923/hive
