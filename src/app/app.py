@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QWidget, QGridLayout
+from PySide6.QtWidgets import QWidget, QGridLayout, QVBoxLayout
 import widgets
 
 class Root(QWidget):
@@ -6,6 +6,7 @@ class Root(QWidget):
         super().__init__()
         self.setWindowTitle("BeeMacro")
         self.setGeometry(100, 100, 860, 540)
+        self.setFixedSize(860, 540)
 
         root = QGridLayout(self)
         root.setContentsMargins(0, 0, 0, 0)
@@ -16,7 +17,23 @@ class Root(QWidget):
         root.setRowMinimumHeight(0, 50)  # Set minimum height for the first row
         root.setRowMinimumHeight(1, 490)
 
-        root.addWidget(widgets.Navbar(), 1, 0, 1, 1)
+        overlay = QWidget(self)
+
+        overlay_layout = QGridLayout(overlay)
+
+        overlay_layout.setContentsMargins(0, 0, 0, 0)
+        overlay_layout.setSpacing(0)
+
+        overlay_layout.setColumnMinimumWidth(0, 60)  # Set minimum width for the first column
+        overlay_layout.setColumnMinimumWidth(1, 800)  # Set minimum width for the second column
+        overlay_layout.setRowMinimumHeight(0, 50)  # Set minimum height for the first row
+        overlay_layout.setRowMinimumHeight(1, 490)
+
+        overlay_layout.addWidget(widgets.Navbar(), 1, 0, 1, 1)
+
+        root.addWidget(overlay, 0, 0, 2, 2)
+
+        overlay.raise_()
         # === Navbar ===
 #        self.navbar = QFrame()
 #        self.navbar.setFixedWidth(50)
