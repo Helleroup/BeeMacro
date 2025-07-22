@@ -1,58 +1,57 @@
-import customtkinter as ctk
-from PIL import Image
-import pages
+from PySide6.QtWidgets import QWidget, QGridLayout
+import widgets
 
-ctk.set_appearance_mode("System")
-
-class App(ctk.CTk):
-
-    currentPage = None
-
+class Root(QWidget):
     def __init__(self):
         super().__init__()
+        self.setWindowTitle("BeeMacro")
+        self.setGeometry(100, 100, 860, 540)
 
-        self.title("BeeMacro")
-        self.geometry("860x540")
-        self.grid_rowconfigure(0, weight=1)
-        self.grid_columnconfigure(0, weight=0)
-        self.grid_columnconfigure(1, weight=1)
+        root = QGridLayout(self)
+        root.setContentsMargins(0, 0, 0, 0)
+        root.setSpacing(0)
 
-        # Navigation bar
-        self.navbar = ctk.CTkFrame(self, width=50, fg_color="red")
-        self.navbar.grid(row=0, column=0, sticky="ns")
-        self.navbar.grid_propagate(False)
+        root.setColumnMinimumWidth(0, 60)  # Set minimum width for the first column
+        root.setColumnMinimumWidth(1, 800)  # Set minimum width for the second column
+        root.setRowMinimumHeight(0, 50)  # Set minimum height for the first row
+        root.setRowMinimumHeight(1, 490)
 
-        gatherIcon = ctk.CTkImage(Image.open("./src/app/img/gather_icon.png"), size=(32, 32))
-        self.gatherbutton = ctk.CTkButton(self.navbar, width=38, height=38, image=gatherIcon, bg_color="blue", command=self.show_gather)
-        self.gatherbutton.grid(row=0, column=0)
+        root.addWidget(widgets.Navbar(), 1, 0, 1, 1)
+        # === Navbar ===
+#        self.navbar = QFrame()
+#        self.navbar.setFixedWidth(50)
+#        self.navbar.setStyleSheet("background-color: red;")
 
-        collectIcon = ctk.CTkImage(Image.open("./src/app/img/collect_icon.png"), size=(32, 32))
-        self.collectbutton = ctk.CTkButton(self.navbar, width=38, height=38, image=collectIcon, bg_color="blue", command=self.show_collect)
-        self.collectbutton.grid(row=1, column=0)
+#        navbar_layout = QVBoxLayout(self.navbar)
+#        navbar_layout.setContentsMargins(0, 0, 0, 0)
+#        navbar_layout.setSpacing(5)
 
-        # Main content area
-        self.main = ctk.CTkFrame(self, fg_color="green")
-        self.main.grid(row=0, column=1, sticky="nsew")
-        self.main.grid_rowconfigure(0, weight=1)
-        self.main.grid_columnconfigure(0, weight=1)
+        # Gather button
+#        gather_icon = QIcon("./src/app/img/gather_icon.png")
+#        self.gather_button = QPushButton()
+#        self.gather_button.setFixedSize(48, 48)
+#        self.gather_button.setIcon(gather_icon)
+#        self.gather_button.setIconSize(QSize(48, 48))  # Use QSize directly
+#        self.gather_button.setStyleSheet("background-color: blue; border: none;")
+#        self.gather_button.clicked.connect(lambda: print("Gather button clicked"))  # Placeholder for actual functionality
 
-        # Initialize the GatherPage
-        self.show_gather()
+        # Collect button
+#        collect_icon = QIcon("./src/app/img/collect_icon.png")
+#        self.collect_button = QPushButton()
+#        self.collect_button.setFixedSize(48, 48)
+#        self.collect_button.setIcon(collect_icon)
+#        self.collect_button.setIconSize(QSize(48, 48))  # Use QSize directly
+#        self.collect_button.setStyleSheet("background-color: blue; border: none;")
+#        self.collect_button.clicked.connect(lambda: print("Collect button clicked"))  # Placeholder for actual functionality
 
-    def clear_main(self):
-        for widget in self.main.winfo_children():
-            widget.destroy()
+#        navbar_layout.addWidget(self.gather_button)
+#        navbar_layout.addWidget(self.collect_button)
+#        navbar_layout.addStretch()
 
-    def show_gather(self):
-        if self.currentPage != 'gather':
-            self.clear_main()
-            page = pages.GatherPage(self.main)
-            page.grid(row=0, column=0, sticky="nsew")
-            self.currentPage = 'gather'
+        # === Main Content Area ===
+#        self.main = QFrame()
+#        self.main.setStyleSheet("background-color: green;")
 
-    def show_collect(self):
-        if self.currentPage != 'collect':
-            self.clear_main()
-            page = pages.CollectPage(self.main)
-            page.grid(row=0, column=0, sticky="nsew")
-            self.currentPage = 'collect'
+        # Allow main area to expand
+#        root.addWidget(self.navbar)
+#        root.addWidget(self.main, 1)

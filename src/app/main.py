@@ -1,5 +1,8 @@
-from app import App
+from PySide6.QtWidgets import QApplication
+from app import Root
 
 if __name__ == "__main__":
-    app = App()
-    app.mainloop()
+    app = QApplication([])
+    root = Root()
+    root.show()
+    app.exec()
