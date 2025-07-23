@@ -29,7 +29,7 @@ class Root(QWidget):
         overlay_layout.setRowMinimumHeight(0, 50)  # Set minimum height for the first row
         overlay_layout.setRowMinimumHeight(1, 490)
 
-        overlay_layout.addWidget(widgets.Navbar(), 1, 0, 1, 1)
+        overlay_layout.addWidget(widgets.Navbar(), 1, 0, 2, 1)
 
         root.addWidget(overlay, 0, 0, 2, 2)
 
