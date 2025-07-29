@@ -1,4 +1,17 @@
 QWidget#Navbar {
-    background-color: #ce3838;
+    background-color: #ffce3838;
     border: none;
+}
+QPushButton {
+    border: none;
+    border-radius: 5px;
+    /* background-color: transparent; */
+}
+QPushButton:hover {
+    background-color: #ff0000;
+}
+QFrame {
+    border: none;
+    margin: 0;
+    padding: 0;
 }

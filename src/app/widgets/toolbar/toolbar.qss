@@ -1,0 +1,4 @@
+QWidget#Toolbar {
+    background-color: #13a9bd;
+    border: none;
+}
